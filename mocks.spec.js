@@ -1,6 +1,6 @@
 const { expect } = require('chai');
-const { txn, db } = require('./mocks');
-const { ionReaderToJson, jsonToIonWriter } = require('../jsion');
+const { txn, db } = require('./txn_stub');
+const { ionReaderToJson, jsonToIonWriter } = require('./utils/jsion');
 
 describe('mocks.js', () => {
 	it('should insert', async () => {

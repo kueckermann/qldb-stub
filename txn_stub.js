@@ -4,11 +4,8 @@ const { randomBytes } = require('crypto');
 const { TransactionExecutor, Result } = require("amazon-qldb-driver-nodejs");
 const ResultStub = sinon.createStubInstance(Result);
 const txn = sinon.createStubInstance(TransactionExecutor);
-const { jsonToIonReader, ionWriterToReader, ionWriterToJson } = require('../jsion');
+const { jsonToIonReader, ionWriterToReader, ionWriterToJson } = require('./utils/jsion');
 const db = {};
-
-const { Parser } = require('node-sql-parser');
-const parser = new Parser();
 
 txn.executeInline.callsFake(async (query, parameters) => {
 
@@ -31,8 +28,6 @@ txn.executeInline.callsFake(async (query, parameters) => {
 			result.getResultList.callsFake(() => inserts);
 			return result;
 		case "UPDATE":
-			const ast = parser.astify(query); 
-			
 			break;
 		case "DELETE":
 
